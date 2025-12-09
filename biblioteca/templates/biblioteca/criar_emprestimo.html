@@ -70,16 +70,21 @@
     </div>
 
     <!-- caso o show_modal for true mosta o modal de emprestimo ativo para o usuário -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+
     {% if show_modal %}
     <script>
         $(document).ready(function () {
+            $('#emprestimoAtivoModal').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
             $('#emprestimoAtivoModal').modal('show');
         });
     </script>
     {% endif %}
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
