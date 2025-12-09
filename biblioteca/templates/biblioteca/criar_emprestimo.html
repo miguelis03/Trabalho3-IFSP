@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Adicionar Empréstimos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- caso ocorra o erro ele irá exibir -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- responsável por adicionar o header padronizado -->
+    {% include 'partials/header2.html' %}
+
+    <!-- responsável pela lógica do select de mostrar os livros e registrar o emprestimo com o livro selecionado -->
+    {% block content %}
+
+    <div class="container mt-5">
+
+        <h2 class="mb-4">Registrar Empréstimo</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <p><strong>Usuário:</strong> {{ request.user.username }}</p>
+
+            <div class="form-group mb-3">
+                <label for="livro">Selecione o Livro:</label>
+                <select name="livro" id="livro" class="form-control" required>
+                    <option value="" disabled selected>-- Selecione um livro --</option>
+                    {% for livro in livros %}
+                    <option value="{{ livro.id }}">{{ livro.titulo }} ({{ livro.autor }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Registrar Empréstimo</button>
+        </form>
+
+    </div>
+
+    {% endblock %}
+
+    <!-- responsável por retornar um modal caso o usuário já tenha um emprestimo em aberto -->
+    <div class="modal fade" id="emprestimoAtivoModal" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Atenção</h5>
+                </div>
+
+                <div class="modal-body">
+                    <p>Você já possui um empréstimo em aberto, para criar outro, devolva o livro.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="/biblioteca" class="btn btn-primary">Ok</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- caso o show_modal for true mosta o modal de emprestimo ativo para o usuário -->
+    {% if show_modal %}
+    <script>
+        $(document).ready(function () {
+            $('#emprestimoAtivoModal').modal('show');
+        });
+    </script>
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

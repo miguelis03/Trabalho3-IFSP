@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Página Inicial</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- responsável por adicionar o header padronizado -->
+    {% include 'partials/header.html' %}
+
+    <!-- responsável por colocar a foto de fundo na home do sistema -->
+    <div class="position-relative">
+        <img class="img-fluid w-100" src="https://i.pinimg.com/736x/36/a0/85/36a085785eabcc6add04d35e8c97be37.jpg"
+            alt="">
+    </div>
+
+    <!-- responsável por adicionar o footer padronizado -->
+    {% include 'partials/footer.html' %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
